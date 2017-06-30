@@ -1,10 +1,17 @@
+/* 
+* COPYRIGHT (C) 2017 Zorin Alexei zetx43@gmail.com
+*
+* NL
+*/
+/*-----VARIABLES-----*/
+var userIP = [];
+/*-----VARIABLES-----*/
 var http = require('http');
 var util = require('util');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
-var getIP = require('ipware')().get_ip;
 
 var entityMap = {
   '&': '&amp;',
@@ -34,25 +41,33 @@ app.get('/team', function(req, res) {
 	console.log('Server: main page loaded');
 });
 
-app.get('/game', function(req, res) {
-	 console.log('Server: got GET /game');
+app.get('/get_task', function(req, res)   {
+   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
+	 console.log('Server: got GET /task IP: '+ip);
+
+   	con.query(q_getTask, function (err, result) {
+		  if (err) throw err;
+      res.json(result);
+    });
 });
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/main.html'));
 	console.log('Server: got GET /');
 });
 
 app.get('/task', function(req, res){
+  res.sendFile(path.join(__dirname + '/main.html'));
   console.log('Server: got GET /task');
 });
 /*-----EXPRESS PART-----*/
 
 /*-----DATA BASE PART-----*/
 var con = mysql.createConnection({
-	host: "172.20.44.225",
-	user: "duser",
-	password: "ruslanchik"
+	host: 'localhost',
+	user: "root",
+	password: "RyugaWaga",
+  database: "nl"
 })  
 
 con.connect(function(err) {
@@ -60,14 +75,13 @@ con.connect(function(err) {
   console.log("MySQL: connected");
 });
 
-con.query("USE nl", function (err, result) {
-    if (err) throw err;
-    console.log("MySQL: nl database is being used");
-  });
+
 /*-----DATA BASE PART-----*/
 
 app.listen(8000);
 
+
 /*-----QUEREIS-----*/
-var q_getTask = "select * from tbTask;";
+var q_getTask = "select * from tbtask;";
 var q_getGame = "select * from tbGame;";
+/*-----QUEREIS-----*/

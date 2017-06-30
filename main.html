@@ -10,11 +10,12 @@
       }
    </style>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,9 @@
 	  стоит упомянуть о некоторых ключевых фигурах и событиях,
 	  которые предшествовали её появлению.</p>
     </article>
+    <div  ng-app="test_A" ng-controller="test_C">
+    <textarea>{{smdata}}</textarea>
+    </div>
     <section>
       <h1>Создание Canonical</h1>
       <p>Чтобы платить основным разработчикам за работу над Ubuntu, Шаттлворту понадобилось создать компанию. Он хотел собрать некоторых лучших людей для работы с глобальными opensource-сообществами. Эти сообщества не знают национальных и географических границ. Вместо того, чтобы перемещать каждого работника в какое-то одно место или офис, Шаттлворт принял решение объединить их в «виртуальную компанию». Хотя у такого решения были очевидные недостатки в виде большой задержки и низкой пропускной способности соединений, разных временных зон и многого другого, это также сулило выгоду в конкретном контексте проекта. </p>
@@ -56,7 +60,11 @@
             <div class="container">
             © 2017 Nite Liga
             </div>
-          </div>
+          </div>  
         </footer>
+        
+         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>-->
+	      
+        <script src="script.js"></script>
 </body>
 </html>
