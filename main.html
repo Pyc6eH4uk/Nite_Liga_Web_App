@@ -5,45 +5,74 @@
   <style>
       .offset{
    margin-left: 15%; 
-   margin-right: 15%; /* Отступ слева */
+   margin-right: 15%; 
     padding: 10px;
+      }
+      main {
+        min-height: 459px;
       }
    </style>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+  </script>
 </head>
 
-<body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
   <nav id="navbar" class="black z-depth-4 nav-wrapper">
      <a href="main.html"> <img src="images/NLft.png" width="150" height="58" alt="Иллюстрация" align="left" vspace="5" hspace="5"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Информация</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Вход</a></li>
+        <li><a ng-click="Information()">Информация</a></li>
+        <li><a ng-click="Component()">Компоненты</a></li>
+        <li><a ng-click="Login()">Вход</a></li>
+        <script>    
+    var app = angular.module('myApp', []);     
+    app.controller('myCtrl', function($scope,$http) { 
+      var get = function() { 
+     $http.get("/get_chat").then(function(response) { 
+      console.log("sent get"); 
+       $scope.rdata = response.data; 
+        setTimeout(get, 1000); 
+            }); 
+             }; 
+               setTimeout(get, 1000); 
+
+     /* $scope.Information = function() {
+      $scope.myname = "Здесь должна быть информация о сайте,но её нет ((((((";
+      }
+      $scope.Component = function() {
+      $scope.myname = "Здесь должны быть компоненты,но их нет ((((((";
+      }
+      $scope.Login = function() {
+      $scope.myname = '<h1>Здесь должна быть вход на сайт , но он не работает ((((((</h1>';
+      }*/
+    });
+    </script>
+      </ul>
   </nav>
   <main class="offset #e0e0e0 grey lighten-2">
-    <article>
-      <h1>История создания Ubuntu</h1>
-      <p>История Ubuntu берёт своё начало в апреле 2004-го.
-	  Но прежде чем рассказать о самой Ubuntu, 
-	  стоит упомянуть о некоторых ключевых фигурах и событиях,
-	  которые предшествовали её появлению.</p>
-    </article>
-    <div  ng-app="test_A" ng-controller="test_C">
-    <textarea>{{smdata}}</textarea>
-    </div>
-    <section>
-      <h1>Создание Canonical</h1>
-      <p>Чтобы платить основным разработчикам за работу над Ubuntu, Шаттлворту понадобилось создать компанию. Он хотел собрать некоторых лучших людей для работы с глобальными opensource-сообществами. Эти сообщества не знают национальных и географических границ. Вместо того, чтобы перемещать каждого работника в какое-то одно место или офис, Шаттлворт принял решение объединить их в «виртуальную компанию». Хотя у такого решения были очевидные недостатки в виде большой задержки и низкой пропускной способности соединений, разных временных зон и многого другого, это также сулило выгоду в конкретном контексте проекта. </p>
-      <p>Со временем, компания разрослась и получила название Canonical. Название было данью оптимистическим прогнозам — стать каноническим местом поддержки свободного программного обеспечения, Ubuntu в частности. И это также распространённое слово в сленге программистов. Важно заметить, что в отличие от монополии, быть каноническим не означает эксклюзивное право на что-либо. Другие компании будут поддерживать Ubuntu и разрабатывать операционные системы на её основе. Но пока Canonical делает хорошую работу, её роль будет оставаться центральной.</p>
-    </section>
+     <div ng-app="myApp" ng-controller="myCtrl">
+        <form name="test" method="post">
+  <p><b>Задание:</b><br>
+   <p>{{scope.rdata.txtask}}</p>
+  </p>
+  <p><b>Подсказака:</b><br>
+   <p>{{scope.rdata.txthint_1}}</p>
+  </p>
+  <p><b>Код:</b><br>
+   <input type="text" size="40">
+  </p>
+  <p><input type="submit" value="Отправить">
+   <input type="reset" value="Очистить"></p>
+ </form>
+
+
+     </div>
   </main>
    <footer class="page-footer black">
           <div class="container">
@@ -60,11 +89,7 @@
             <div class="container">
             © 2017 Nite Liga
             </div>
-          </div>  
+          </div>
         </footer>
-        
-         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>-->
-	      
-        <script src="script.js"></script>
 </body>
 </html>

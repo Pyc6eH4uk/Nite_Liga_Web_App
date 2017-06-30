@@ -18,3 +18,7 @@ var app = angular.module('test_A', []);
 		setTimeout(get, 1000);
 	});
 
+	app.config(['$qProvider', function ($qProvider) {
+		$qProvider.errorOnUnhandledRejections(false);
+	}]);
+
