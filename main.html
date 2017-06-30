@@ -23,47 +23,24 @@
   </script>
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl">
+<body>
   <nav id="navbar" class="black z-depth-4 nav-wrapper">
      <a href="main.html"> <img src="images/NLft.png" width="150" height="58" alt="Иллюстрация" align="left" vspace="5" hspace="5"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a ng-click="Information()">Информация</a></li>
         <li><a ng-click="Component()">Компоненты</a></li>
         <li><a ng-click="Login()">Вход</a></li>
-        <script>    
-    var app = angular.module('myApp', []);     
-    app.controller('myCtrl', function($scope,$http) { 
-      var get = function() { 
-     $http.get("/get_chat").then(function(response) { 
-      console.log("sent get"); 
-       $scope.rdata = response.data; 
-        setTimeout(get, 1000); 
-            }); 
-             }; 
-               setTimeout(get, 1000); 
-
-     /* $scope.Information = function() {
-      $scope.myname = "Здесь должна быть информация о сайте,но её нет ((((((";
-      }
-      $scope.Component = function() {
-      $scope.myname = "Здесь должны быть компоненты,но их нет ((((((";
-      }
-      $scope.Login = function() {
-      $scope.myname = '<h1>Здесь должна быть вход на сайт , но он не работает ((((((</h1>';
-      }*/
-    });
-    </script>
       </ul>
   </nav>
   <main class="offset #e0e0e0 grey lighten-2">
-     <div ng-app="myApp" ng-controller="myCtrl">
+     <div ng-app="test_A" ng-controller="test_C">
         <form name="test" method="post">
   <p><b>Задание:</b><br>
-   <p>{{scope.rdata.txtask}}</p>
+   <p>{{smdata[0].txtask}}</p>
   </p>
   <p><b>Подсказака:</b><br>
-   <p>{{scope.rdata.txthint_1}}</p>
-  </p>
+   <p>{{smdata[0].txthint_1}}</p>
+  </p>  
   <p><b>Код:</b><br>
    <input type="text" size="40">
   </p>
@@ -91,5 +68,6 @@
             </div>
           </div>
         </footer>
+        <script src="script.js"></script>
 </body>
 </html>

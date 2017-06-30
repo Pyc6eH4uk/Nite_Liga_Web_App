@@ -47,7 +47,7 @@ app.get('/get_task', function(req, res)   {
 
    	con.query(q_getTask, function (err, result) {
 		  if (err) throw err;
-      res.json(result);
+      res.send(JSON.stringify(result));
     });
 });
 
@@ -64,11 +64,11 @@ app.get('/task', function(req, res){
 
 /*-----DATA BASE PART-----*/
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: "root",
-    password: "leiSh2ow",
-    database: "nl"
-});
+	host: 'localhost',
+	user: "root",
+	password: "RyugaWaga",
+  database: "nl"
+})  
 
 con.connect(function(err) {
   if (err) throw err;
@@ -78,7 +78,7 @@ con.connect(function(err) {
 
 /*-----DATA BASE PART-----*/
 
-app.listen(8888);
+app.listen(8000);
 
 
 /*-----QUEREIS-----*/
