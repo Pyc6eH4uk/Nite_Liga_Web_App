@@ -1,0 +1,16 @@
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope, $http) {
+		var get = function() {
+			$http.get("/get_chat").then(function(response) {
+				console.log("sent get");
+				$scope.rdata = response.data;
+				setTimeout(get, 1000);
+			});
+			//$scope.$apply()
+		};
+		setTimeout(get, 1000);
+	});
+	
+	app.config(['$qProvider', function ($qProvider) {
+		$qProvider.errorOnUnhandledRejections(false);
+	}]);
